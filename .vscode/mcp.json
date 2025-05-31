@@ -1,0 +1,53 @@
+{
+  "inputs": [
+   {
+     "type": "promptString",
+     "id": "github_token",
+     "description": "GitHub Personal Access Token",
+     "password": true
+   }
+ ],
+
+  "servers": {
+    
+  "york-ie": {
+     "command": "node",
+     "args": [
+       "C:\\Users\\anshs\\OneDrive\\Documents\\learning materials\\MCP\\index.js"
+     ]
+   },
+    "jira": {
+      "command": "npx",
+      "args": ["-y", "jira-mcp"],
+      "env": {
+        "JIRA_INSTANCE_URL": "https://yorkhackathonteam10.atlassian.net/",
+        "JIRA_USER_EMAIL": "yorkhackathonteam10@gmail.com",
+        "JIRA_API_KEY": "ATATT3xFfGF0FCw_dRKr5MYNT5dEaMlfsu3HM-RXv4cGjx36qEzrsruuRmKOGtt1QEpRkPVGWzfGW_8XQQ1ev6QK3-gUzf-w3gIDvGCXDSPmnfwcSv3rYIagai9ljAV04AAkZ2DR2E60hjAVGYsdPcXbl3GVePUdcnKhw3GY54DfJJBlZ97Zx0U=49640B3A"
+      }
+    },
+    "filesystem": {
+     "command": "npx",
+     "args": [
+       "-y",
+       "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\anshs\\OneDrive\\Documents",
+       "C:\\Users\\anshs\\OneDrive\\Desktop",
+
+     ]
+   },
+   "github": {
+       "command": "docker",
+       "args": [
+         "run",
+         "-i",
+         "--rm",
+         "-e",
+         "GITHUB_PERSONAL_ACCESS_TOKEN",
+         "ghcr.io/github/github-mcp-server"
+       ],
+       "env": {
+         "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_token}"
+       }
+     },
+  }
+}
